@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class DzWebTestValueSource {
-    @ValueSource(strings = {"Фильмы", "Сериалы"})
-    @ParameterizedTest(name = "Убедиться, что есть в списке {0}")
+    @ValueSource(strings = {"Р¤РёР»СЊРјС‹", "РЎРµСЂРёР°Р»С‹"})
+    @ParameterizedTest(name = "РЈР±РµРґРёС‚СЊСЃСЏ, С‡С‚Рѕ РµСЃС‚СЊ РІ СЃРїРёСЃРєРµ {0}")
     void selenideTest(String testData) {
         open("https://www.kinopoisk.ru/");
         $(".styles_sticky__mDnbt").shouldHave(text(testData));

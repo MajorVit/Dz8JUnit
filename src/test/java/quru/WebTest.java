@@ -23,8 +23,8 @@ public class WebTest {
 
     //@Disabled("")
     @ValueSource(strings = {"Selenide", "Allure"})
-    //@DisplayName("Результаты поиска не пустые для запроса 'Selenide'")
-    @ParameterizedTest(name = "Результаты поиска не пустые для запроса {0}")
+    //@DisplayName("Р РµР·СѓР»СЊС‚Р°С‚С‹ РїРѕРёСЃРєР° РЅРµ РїСѓСЃС‚С‹Рµ РґР»СЏ Р·Р°РїСЂРѕСЃР° 'Selenide'")
+    @ParameterizedTest(name = "Р РµР·СѓР»СЊС‚Р°С‚С‹ РїРѕРёСЃРєР° РЅРµ РїСѓСЃС‚С‹Рµ РґР»СЏ Р·Р°РїСЂРѕСЃР° {0}")
     void selenideTest(String testData) {
         open("https://ya.ru");
         $("#text").setValue(testData);
@@ -33,28 +33,28 @@ public class WebTest {
     }
 
     @CsvSource(value = {
-             "Selenide, 'это фреймворк для автоматизированного тестирования веб-приложений",
-            "Allure java, -framework успешно применяется в работе автоматизатора",
+             "Selenide, 'СЌС‚Рѕ С„СЂРµР№РјРІРѕСЂРє РґР»СЏ Р°РІС‚РѕРјР°С‚РёР·РёСЂРѕРІР°РЅРЅРѕРіРѕ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РІРµР±-РїСЂРёР»РѕР¶РµРЅРёР№",
+            "Allure java, -framework СѓСЃРїРµС€РЅРѕ РїСЂРёРјРµРЅСЏРµС‚СЃСЏ РІ СЂР°Р±РѕС‚Рµ Р°РІС‚РѕРјР°С‚РёР·Р°С‚РѕСЂР°",
     })
-    @ParameterizedTest(name = "Результаты поиска содержат текст \"{1}\" для запроса \"{0}\"")
+    @ParameterizedTest(name = "Р РµР·СѓР»СЊС‚Р°С‚С‹ РїРѕРёСЃРєР° СЃРѕРґРµСЂР¶Р°С‚ С‚РµРєСЃС‚ \"{1}\" РґР»СЏ Р·Р°РїСЂРѕСЃР° \"{0}\"")
     void commonComplexSearchTest(String testData, String expectedResult) {
         open("https://ya.ru");
         $("#text").setValue(testData);
         $("button[type='submit']").click();
-        $$("li.serp-item").filter(not(text("Реклама")))
+        $$("li.serp-item").filter(not(text("Р РµРєР»Р°РјР°")))
                 .first()
                 .shouldHave(text(expectedResult));
     }
 
     static Stream<Arguments> forSelenideSiteMenuTest() {
        return Stream.of(
-               Arguments.of("RU", List.of("С чего начать?", "Док", "ЧАВО", "Блог", "Javadoc", "Пользователи","Отзывы") ),
+               Arguments.of("RU", List.of("РЎ С‡РµРіРѕ РЅР°С‡Р°С‚СЊ?", "Р”РѕРє", "Р§РђР’Рћ", "Р‘Р»РѕРі", "Javadoc", "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё","РћС‚Р·С‹РІС‹") ),
                Arguments.of("EN", List.of("Quick start", "Docs", "FAQ", "Blog", "Javadoc", "Users", "Quotes"))
        );
     }
 
     @MethodSource("forSelenideSiteMenuTest")
-    @ParameterizedTest(name = "Для локали {0} отображаются кнопки {1}")
+    @ParameterizedTest(name = "Р”Р»СЏ Р»РѕРєР°Р»Рё {0} РѕС‚РѕР±СЂР°Р¶Р°СЋС‚СЃСЏ РєРЅРѕРїРєРё {1}")
     void selenideSiteMenuTest(String lang, List<String> expectedButtons) {
         open("https://selenide.org/");
         $$("#languages a").find(text(lang)).click();

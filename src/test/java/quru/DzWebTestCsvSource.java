@@ -16,11 +16,11 @@ public class DzWebTestCsvSource {
     }
 
         @CsvSource(value = {
-                "Hello, Здравствуйте",
-                "Bye, Пока"
+                "Hello, Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ",
+                "Bye, РџРѕРєР°"
         }
         )
-        @ParameterizedTest(name = "При написании слова {0} выдаст перевод {1}")
+        @ParameterizedTest(name = "РџСЂРё РЅР°РїРёСЃР°РЅРёРё СЃР»РѕРІР° {0} РІС‹РґР°СЃС‚ РїРµСЂРµРІРѕРґ {1}")
         void translate(String testData, String exceptionData) {
             open("https://translate.yandex.ru");
             $("#fakeArea").setValue(testData);
